@@ -8,7 +8,7 @@ app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 # Store the database in a persistent directory
 
-db_path = os.path.join("/opt/render", "database.db")
+db_path = os.path.join("/opt/render", "database2.db")
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
@@ -42,12 +42,12 @@ def index():
         tasks = User.query.order_by(User.date_created).all()
         return render_template('index.html', tasks=tasks)
 
-def create_database():  
-    with app.app_context():  
-        db.create_all()  
+# def create_database():  
+#     with app.app_context():  
+#         db.create_all()  
 
-# with app.app_context():
-#     db.create_all()
+with app.app_context():
+    db.create_all()
 
 # @app.before_first_request
 # def create_db():
@@ -59,5 +59,5 @@ def create_database():
 
 
 if __name__ == '__main__':
-    create_database()
+    # create_database()
     app.run(debug=True)
