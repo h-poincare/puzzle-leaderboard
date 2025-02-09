@@ -46,8 +46,8 @@ def index():
 #     with app.app_context():  
 #         db.create_all()  
 
-# with app.app_context():
-#     db.create_all()
+with app.app_context():
+    db.create_all()
 
 # @app.before_first_request
 # def create_db():
