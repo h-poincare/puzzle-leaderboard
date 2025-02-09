@@ -46,13 +46,16 @@ def index():
 #     with app.app_context():  
 #         db.create_all()  
 
-@app.before_first_request
-def create_db():
-    try:
-        db.create_all()  # Create tables if they don't exist
-        app.logger.info("Database and tables created successfully!")
-    except Exception as e:
-        app.logger.error(f"Error creating database: {str(e)}")
+with app.app_context():
+    db.create_all()
+
+# @app.before_first_request
+# def create_db():
+#     try:
+#         db.create_all()  # Create tables if they don't exist
+#         app.logger.info("Database and tables created successfully!")
+#     except Exception as e:
+#         app.logger.error(f"Error creating database: {str(e)}")
 
 
 if __name__ == '__main__':
