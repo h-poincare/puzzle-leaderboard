@@ -1,11 +1,18 @@
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-
+import os 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+# Store the database in a persistent directory
+
+db_path = os.path.join("/opt/render", "database.db")
+app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -35,12 +42,11 @@ def index():
         tasks = User.query.order_by(User.date_created).all()
         return render_template('index.html', tasks=tasks)
 
-# def create_database():  
-#     with app.app_context():  
-#         db.create_all()  
-
+def create_database():  
+    with app.app_context():  
+        db.create_all()  
 
 
 if __name__ == '__main__':
-    # create_database()
+    create_database()
     app.run(debug=True)
