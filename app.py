@@ -8,19 +8,9 @@ app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test3.db'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'opt/render/app.db')
-
-# Store the database in a persistent directory
-
-# db_path = os.path.join("/opt/render", "database2.db")
-# app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:////{db_path}"
-# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
-# basedir = os.path.abspath(os.path.dirname(__file__))
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, '/opt/render/app.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
-
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)

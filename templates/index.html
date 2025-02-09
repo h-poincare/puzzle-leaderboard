@@ -47,6 +47,7 @@
     .form-container input[type="submit"]:hover {
         background-color: #0056b3;
     }
+
 </style>
 {% endblock %}
 
@@ -85,11 +86,12 @@
     <!-- Centered form below the table -->
     <div class="form-container">
         <form action="/" method="POST">
-            <input type="text" name="f_name" id="f_name" placeholder="First Name">
+            <input type="text" name="f_name" id="f_name" placeholder="First Name" >
             <input type="text" name="phone_num" id="phone_num" placeholder="Phone Number">
-            <input type="submit" value="Opt In">
-            <!-- <input type="checkbox" name="acknowledge" id="acknowledge" required> -->
-            <!-- <label for="acknowledge" style="display: inline;">Acknowledge</label> -->
+            <input type="submit" value="Opt In"><br>
+            <p>By checking this box, you agree to receive SMS messages from NYT Puzzle Leaderboard with updates.</p>
+            <input type="checkbox" name="acknowledge" \ id="acknowledge" required><br>
+            <label for="acknowledge" style="display: inline;">Acknowledge</label>
         </form>
     </div> 
 </div>
