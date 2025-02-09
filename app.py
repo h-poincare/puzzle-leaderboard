@@ -42,12 +42,12 @@ def index():
         tasks = User.query.order_by(User.date_created).all()
         return render_template('index.html', tasks=tasks)
 
-# def create_database():  
-#     with app.app_context():  
-#         db.create_all()  
+def create_database():  
+    with app.app_context():  
+        db.create_all()  
 
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
 
 # @app.before_first_request
 # def create_db():
@@ -59,5 +59,5 @@ with app.app_context():
 
 
 if __name__ == '__main__':
-    # create_database()
+    create_database()
     app.run(debug=True)
